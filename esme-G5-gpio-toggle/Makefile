@@ -17,7 +17,7 @@ LDLIBS += $(shell pkg-config --libs libgpiod )
 
 INSTALL_DIR ?= ./.install
 INSTALL := $(INSTALL_DIR)/usr/bin
-#a utiliser pour la question 11 INSTALL := $(INSTALL_DIR)/etc/init.d
+INSTALL := $(INSTALL_DIR)/etc/init.d
 
 # default target (all)
 all: $(PROGRAM)
@@ -30,11 +30,11 @@ install: $(PROGRAM)
 	@cp $(PROGRAM) $(INSTALL)
 	@echo "Programme installé avec succès dans $(INSTALL)"
 
-#a utiliser pour la question 11	@echo "Installation du script dans $(INSTALL)..."
-#	@mkdir -p $(INSTALL)
-#	@cp esme-gpio26-toggle $(INSTALL)
-#	@chmod 0755 $(INSTALL)/esme-gpio26-toggle
-#	@echo "Script esme-gpio26-toggle installé avec succès dans $(INSTALL) avec les bonnes permissions."
+@echo "Installation du script dans $(INSTALL)..."
+	@mkdir -p $(INSTALL)
+	@cp esme-gpio26-toggle $(INSTALL)
+	@chmod 0755 $(INSTALL)/esme-gpio26-toggle
+	@echo "Script esme-gpio26-toggle installé avec succès dans $(INSTALL) avec les bonnes permissions."
 
 
 clean:
@@ -44,7 +44,7 @@ clean:
 uninstall:
 	@echo "Suppression des fichiers installés..."
 	@$(RM) -f $(INSTALL)/$(PROGRAM)
-# a utiliser pour la question 11	@$(RM) -f $(INSTALL)/esme-gpio26-toggle
+	@$(RM) -f $(INSTALL)/esme-gpio26-toggle
 	@rmdir --ignore-fail-on-non-empty $(INSTALL) $(INSTALL_DIR)/usr
 	@echo "Fichiers d'installation supprimés."
 
